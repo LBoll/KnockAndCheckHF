@@ -5,3 +5,100 @@
 
 <h2>DSSI</h2>
 
+<form action="/Survey/SaveDSSIForm" method="post">
+    <div class="form-group">
+        <label>Patient ID:</label>
+        <select name="PatientID" class="form-control">
+            <option value="null" selected></option>
+            @foreach (string id in ViewBag.Patients)
+            {
+                <option value="@id">@id</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Date of survey:</label>
+        <input type="text" class="form-control" name="DateOfVisit" placeholder="MM/DD/YYYY" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" title="Invalid date" />
+    </div>
+    <br /><h4>Questions:</h4><br />
+    <div class="form-group">
+        <label>@ViewBag.Form.Q1</label><br />
+        <input type="radio" class="form-control" name="A1" value="None" /> None<br />
+        <input type="radio" class="form-control" name="A1" value="1-2 People" /> None<br /> 1-2 People<br />
+        <input type="radio" class="form-control" name="A1" value="More than 2 people" /> More than 2 people<br />
+    </div><br />
+    <div class="form-group">
+        <label>@ViewBag.Form.Q2</label><br />
+        <input type="radio" class="form-control" name="A2" value="Once" /> Once<br />
+        <input type="radio" class="form-control" name="A2" value="Twice" /> Twice<br />
+        <input type="radio" class="form-control" name="A2" value="Three times" /> Three times<br />
+        <input type="radio" class="form-control" name="A2" value="Four times" /> Four times<br />
+        <input type="radio" class="form-control" name="A2" value="Five times" /> Five times<br />
+        <input type="radio" class="form-control" name="A2" value="Six times" /> Six times<br />
+        <input type="radio" class="form-control" name="A2" value="Seven or more times" /> Seven or more times<br />
+    </div><br />
+    <div class="form-group">
+        <label>@ViewBag.Form.Q3</label><br />
+        <input type="radio" class="form-control" name="A3" value="Once" /> Once<br />
+        <input type="radio" class="form-control" name="A3" value="Twice" /> Twice<br />
+        <input type="radio" class="form-control" name="A3" value="Three times" /> Three times<br />
+        <input type="radio" class="form-control" name="A3" value="Four times" /> Four times<br />
+        <input type="radio" class="form-control" name="A3" value="Five times" /> Five times<br />
+        <input type="radio" class="form-control" name="A3" value="Six times" /> Six times<br />
+        <input type="radio" class="form-control" name="A3" value="Seven or more times" /> Seven or more times<br />
+    </div><br />
+    <div class="form-group">
+        <label>@ViewBag.Form.Q4</label><br />
+        <input type="radio" class="form-control" name="A4" value="Once" /> Once<br />
+        <input type="radio" class="form-control" name="A4" value="Twice" /> Twice<br />
+        <input type="radio" class="form-control" name="A4" value="Three times" /> Three times<br />
+        <input type="radio" class="form-control" name="A4" value="Four times" /> Four times<br />
+        <input type="radio" class="form-control" name="A4" value="Five times" /> Five times<br />
+        <input type="radio" class="form-control" name="A4" value="Six times" /> Six times<br />
+        <input type="radio" class="form-control" name="A4" value="Seven or more times" /> Seven or more times<br />
+    </div><br />
+    <div class="form-group">
+        <label>@ViewBag.Form.Q5</label><br />
+        <input type="radio" class="form-control" name="A5" value="Hardly ever" /> Hardly ever<br />
+        <input type="radio" class="form-control" name="A5" value="Some of the time" /> Some of the time<br />
+        <input type="radio" class="form-control" name="A5" value="Most of the time" /> Most of the time<br />
+    </div><br />
+    <div class="form-group">
+        <label>@ViewBag.Form.Q6</label><br />
+        <input type="radio" class="form-control" name="A6" value="Hardly ever" /> Hardly ever<br />
+        <input type="radio" class="form-control" name="A6" value="Some of the time" /> Some of the time<br />
+        <input type="radio" class="form-control" name="A6" value="Most of the time" /> Most of the time<br />
+    </div><br />
+    <div class="form-group">
+        <label>@ViewBag.Form.Q7</label><br />
+        <input type="radio" class="form-control" name="A7" value="Hardly ever" /> Hardly ever<br />
+        <input type="radio" class="form-control" name="A7" value="Some of the time" /> Some of the time<br />
+        <input type="radio" class="form-control" name="A7" value="Most of the time" /> Most of the time<br />
+    </div><br />
+    <div class="form-group">
+        <label>@ViewBag.Form.Q8</label><br />
+        <input type="radio" class="form-control" name="A8" value="Hardly ever" /> Hardly ever<br />
+        <input type="radio" class="form-control" name="A8" value="Some of the time" /> Some of the time<br />
+        <input type="radio" class="form-control" name="A8" value="Most of the time" /> Most of the time<br />
+    </div><br />
+    <div class="form-group">
+        <label>@ViewBag.Form.Q9</label><br />
+        <input type="radio" class="form-control" name="A9" value="Hardly ever" /> Hardly ever<br />
+        <input type="radio" class="form-control" name="A9" value="Some of the time" /> Some of the time<br />
+        <input type="radio" class="form-control" name="A9" value="Most of the time" /> Most of the time<br />
+    </div><br />
+    <div class="form-group">
+        <label>@ViewBag.Form.Q10</label><br />
+        <input type="radio" class="form-control" name="A10" value="Hardly ever" /> Hardly ever<br />
+        <input type="radio" class="form-control" name="A10" value="Some of the time" /> Some of the time<br />
+        <input type="radio" class="form-control" name="A10" value="Most of the time" /> Most of the time<br />
+    </div><br />
+    <div class="form-group">
+        <label>@ViewBag.Form.Q11</label><br />
+        <input type="radio" class="form-control" name="A11" value="Very dissatisfied" /> Very dissatisfied<br />
+        <input type="radio" class="form-control" name="A11" value="Somewhat dissatisfied" /> Somewhat dissatisfied<br />
+        <input type="radio" class="form-control" name="A11" value="Satisfied" /> Satisfied<br />
+    </div><br />
+    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+</form>
+
