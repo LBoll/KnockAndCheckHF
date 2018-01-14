@@ -38,5 +38,14 @@ namespace KnockAndCheckHF.Controllers
 
             ORM.SaveChanges();
         }
+
+        public void SaveEnrollment(string PatientID, string FirstName, string LastName, string DoB, string PhoneNumber, string StreetAddress, string City, string State, string Zip, string PrefferedDay, string PrefferedTime, string StartDate, string StartTime, string EmergencyFirstName, string EmergencyLastName, string EmergencyAddress, string EmergencyPhoneNumber, string EmergencyCity, string EmergencyState, string EmergencyZip, string EmergencyRelationship)
+        {
+            KnockAndCheckDAL DAL = new KnockAndCheckDAL();
+
+            ORM.Patients.Add(new Patient { PatientID = PatientID, FirstName = FirstName, LastName = LastName, DoB = DoB, PhoneNumber = PhoneNumber, StreetAddress = StreetAddress, City = City, State = State, Zip = Zip, PrefferedDay = PrefferedDay, PrefferedTime = PrefferedTime, StartDate = StartDate, StartTime = StartTime, EmergencyFirstName = EmergencyFirstName, EmergencyLastName = EmergencyLastName, EmergencyAddress = EmergencyAddress, EmergencyPhoneNumber = EmergencyPhoneNumber, EmergencyCity = EmergencyCity, EmergencyState = EmergencyState, EmergencyZip = EmergencyZip, EmergencyRelationship = EmergencyRelationship });
+
+            ORM.SaveChanges();
+        }
     }
 }
