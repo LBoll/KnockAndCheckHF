@@ -13,5 +13,10 @@ namespace KnockAndCheckHF.Controllers
         {
             return View();
         }
+
+        public ActionResult Enrollment()
+        {
+            return View();
+        }
     }
 }
