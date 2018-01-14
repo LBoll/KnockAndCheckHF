@@ -36,5 +36,27 @@ namespace KnockAndCheckHF.Controllers
 
             return View("../Home/Index");
         }
+
+        [Authorize]
+        public ActionResult WHO5()
+        {
+            KnockAndCheckDAL DAL = new KnockAndCheckDAL();
+
+            ViewBag.Patients = DAL.GetPatientList();
+
+            ViewBag.Form = DAL.GetForm("WHO5");
+
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult SaveWHO5Form(string PatientID, string DateOfVisit, string A1, string A2, string A3, string A4, string A5)
+        {
+            KnockAndCheckDAL DAL = new KnockAndCheckDAL();
+
+            DAL.SaveWHO5Form(User.Identity.GetUserId(), PatientID, DateOfVisit, A1, A2, A3, A4, A5);
+
+            return View("../Home/Index");
+        }
     }
 }
