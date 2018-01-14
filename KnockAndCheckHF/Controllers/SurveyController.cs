@@ -22,6 +22,16 @@ namespace KnockAndCheckHF.Controllers
         }
 
         [Authorize]
+        public ActionResult SaveEnrollment(string PatientID, string FirstName, string LastName, string DoB, string PhoneNumber, string StreetAddress, string City, string State, string Zip, string PrefferedDay, string PrefferedTime, string StartDate, string StartTime, string EmergencyFirstName, string EmergencyLastName, string EmergencyAddress, string EmergencyPhoneNumber, string EmergencyCity, string EmergencyState, string EmergencyZip, string EmergencyRelationship)
+        {
+            KnockAndCheckDAL DAL = new KnockAndCheckDAL();
+
+            DAL.SaveEnrollment(PatientID, FirstName, LastName, DoB, PhoneNumber, StreetAddress, City, State, Zip, PrefferedDay, PrefferedTime, StartDate, StartTime, EmergencyFirstName, EmergencyLastName, EmergencyAddress, EmergencyPhoneNumber, EmergencyCity, EmergencyState, EmergencyZip, EmergencyRelationship);
+
+            return View("../Home/Index");
+        }
+
+        [Authorize]
         public ActionResult DSSI()
         {
             KnockAndCheckDAL DAL = new KnockAndCheckDAL();
