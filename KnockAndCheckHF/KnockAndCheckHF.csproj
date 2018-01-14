@@ -53,6 +53,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -191,6 +193,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KnockAndCheckDAL.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Global.asax.cs">
@@ -202,8 +205,32 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Checkup.cs">
+      <DependentUpon>KnockAndCheckDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Form.cs">
+      <DependentUpon>KnockAndCheckDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\KnockAndCheckDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KnockAndCheckDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KnockAndCheckDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KnockAndCheckDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KnockAndCheckDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KnockAndCheckDB.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Patient.cs">
+      <DependentUpon>KnockAndCheckDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -214,10 +241,27 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\KnockAndCheckDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KnockAndCheckDB.edmx</DependentUpon>
+      <LastGenOutput>KnockAndCheckDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\KnockAndCheckDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KnockAndCheckDB.edmx</DependentUpon>
+      <LastGenOutput>KnockAndCheckDB.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Models\KnockAndCheckDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>KnockAndCheckDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\KnockAndCheckDB.edmx.diagram">
+      <DependentUpon>KnockAndCheckDB.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -289,6 +333,9 @@
     <EmbeddedResource Include="Migrations\201801121824451_IdentityFramework.resx">
       <DependentUpon>201801121824451_IdentityFramework.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
