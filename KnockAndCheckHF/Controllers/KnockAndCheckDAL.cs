@@ -6,6 +6,13 @@ using System.Web;
 
 namespace KnockAndCheckHF.Controllers
 {
+    public class SurveyInfo
+    {
+        public string FormID { get; set; }
+        public string Date { get; set; }
+        public string Administrator { get; set; }
+    }
+
     public class KnockAndCheckDAL
     {
         KnockAndCheckDBEntities ORM = new KnockAndCheckDBEntities();
@@ -55,6 +62,25 @@ namespace KnockAndCheckHF.Controllers
             ORM.Checkups.Add(new Checkup { Id = Id, PatientID = PatientID, FormID = "CHECKUP", DateOfVisit = DateOfVisit, A1 = A1, A2 = A2, A3 = A3, A4 = A4, A5 = A5, SurveyID = SurveyID });
 
             ORM.SaveChanges();
+        }
+
+        public Patient SpecificPatient(string PatientID)
+        {
+            return ORM.Patients.Find(PatientID);
+        }
+
+        public List<SurveyInfo> GetSurveysByID(string PatientID)
+        {
+            List<SurveyInfo> surveys = new List<SurveyInfo>();
+
+            List<Checkup> checkups = ORM.Checkups.Where(x => x.PatientID == PatientID).ToList();
+
+            foreach (Checkup checkup in checkups)
+            {
+                surveys.Add(new SurveyInfo { FormID = checkup.FormID, Date = checkup.DateOfVisit, Administrator = UserORM.Users.Find(checkup.Id).Email });
+            }
+
+            return surveys;
         }
     }
 }

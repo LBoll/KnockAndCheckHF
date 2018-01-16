@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Patient";
+}
+
+@using KnockAndCheckHF.Models;
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 ">
+            <div class="panel panel-primary">
+                <div class="panel-heading"> <h3 id="center">Patient Profile</h3></div>
+                <div class="panel-body">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <div class="col-sm-6">
+                                <div align="center">
+                                    <h4 style="color:#00b1b1;">Patient ID: #@ViewBag.Patient.PatientID</h4>
+                                    <span><b>Patient Name: </b>@ViewBag.Patient.FirstName @ViewBag.Patient.LastName</span><br />
+                                    <span><b>Date of Birth: </b>@ViewBag.Patient.DoB</span><br />
+                                    <span><b>Phone Number: </b>@ViewBag.Patient.PhoneNumber</span><br />
+                                    <span><b>Address: </b>@ViewBag.Patient.StreetAddress, @ViewBag.Patient.City, @ViewBag.Patient.State, @ViewBag.Patient.Zip </span><br />
+                                    <span><b>Enrolling Care Giver: </b>@ViewBag.Patient.EnrollingCareGiver</span><br />
+                                    <span><b>Current Care Giver: </b>@ViewBag.Patient.PrimaryCareGiver</span><br />
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-sm-6">
+                                <div align="center">
+                                    <h4 style="color:#00b1b1;">Emergency Contact Information</h4>
+                                    <span><b>Emergency Full Name: </b>@ViewBag.Patient.EmergencyFirstName @ViewBag.Patient.EmergencyLastName</span><br />
+                                    <span><b>Emergency Phone Number: </b>@ViewBag.Patient.EmergencyPhoneNumber</span><br />
+                                    <span><b>Emergency Relationship: </b>@ViewBag.Patient.EmergencyRelationship</span><br />
+                                    <span><b>Address: </b>@ViewBag.Patient.EmergencyAddress, @ViewBag.Patient.EmergencyCity, @ViewBag.Patient.EmergencyState, @ViewBag.Patient.EmergencyZip </span><br />
+                                </div>
+                            </div>
+                            @*<div class="clearfix"></div>
+                            <hr style="margin:5px 0 5px 0;">
+                            <div class="col-sm-5 col-xs-6 tital ">Binomial Name:</div><div class="col-sm-7 col-xs-6 ">ViewBag.Mushroom.Species</div>*@
+                            <br />
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            </div>
+            @if (ViewBag.Surveys != null)
+            {
+                <br /><br /><h3 id="center">Surveys</h3><br /><br />
+                foreach (var survey in ViewBag.Surveys)
+                {
+                    <div class="col-sm-5 col-xs-6 tital ">
+                        @survey.Date
+                    </div>
+                        <div class="col-sm-7 col-xs-6">
+                            <b>Case Worker: </b>@survey.Administrator<br />
+                            <b>Form Name: </b>@survey.FormID
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="bot-border"></div>
+                }
+            }
+        </div>
+    </div>
+</div>
