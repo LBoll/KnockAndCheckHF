@@ -313,6 +313,7 @@
     <Content Include="Views\Survey\DSSI.cshtml" />
     <Content Include="Views\Survey\Checkup.cshtml" />
     <Content Include="Views\Survey\ViewSurvey.cshtml" />
+    <Content Include="Views\Survey\Patient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

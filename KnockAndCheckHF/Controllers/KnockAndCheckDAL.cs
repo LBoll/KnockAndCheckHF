@@ -79,12 +79,17 @@ namespace KnockAndCheckHF.Controllers
             ORM.SaveChanges();
         }
 
+        public Patient SpecificPatient(string PatientID)
+        {
+            return ORM.Patients.Find(PatientID);
+        }
+
         public List<SurveyInfo> GetSurveysByID(string PatientID)
         {
             List<SurveyInfo> surveys = new List<SurveyInfo>();
 
             List<Checkup> checkups = ORM.Checkups.Where(x => x.PatientID == PatientID).ToList();
-            
+
             foreach (Checkup checkup in checkups)
             {
                 surveys.Add(new SurveyInfo { FormID = checkup.FormID, Date = checkup.DateOfVisit, Administrator = UserORM.Users.Find(checkup.Id).Email });

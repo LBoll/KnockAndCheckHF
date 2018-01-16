@@ -110,5 +110,15 @@ namespace KnockAndCheckHF.Controllers
 
             return View();
         }
+
+        public ActionResult SpecificPatient(string PatientID)
+        {
+            KnockAndCheckDAL DAL = new KnockAndCheckDAL();
+
+            ViewBag.Patient = DAL.SpecificPatient(PatientID);
+            ViewBag.Surveys = DAL.GetSurveysByID(PatientID);
+
+            return View("Patient");
+        }
     }
 }

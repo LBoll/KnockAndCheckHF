@@ -14,7 +14,7 @@
     @foreach (var Patient in ViewBag.Patients)
     {
         <tr>
-            <td>@Patient.PatientID</td>
+            <td><a href="../Survey/SpecificPatient?PatientID=@Patient.PatientID">@Patient.PatientID</a></td>
             <td>@Patient.FirstName @Patient.LastName</td>
             <td>@Patient.PhoneNumber</td>
             <td>@Patient.PrimaryCareGiver</td>
