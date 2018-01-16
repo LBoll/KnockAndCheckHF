@@ -8,6 +8,7 @@ namespace KnockAndCheckHF.Controllers
 {
     public class SurveyInfo
     {
+        public string SurveyID { get; set; }
         public string FormID { get; set; }
         public string Date { get; set; }
         public string Administrator { get; set; }
@@ -92,7 +93,7 @@ namespace KnockAndCheckHF.Controllers
 
             foreach (Checkup checkup in checkups)
             {
-                surveys.Add(new SurveyInfo { FormID = checkup.FormID, Date = checkup.DateOfVisit, Administrator = UserORM.Users.Find(checkup.Id).Email });
+                surveys.Add(new SurveyInfo { SurveyID = checkup.SurveyID, FormID = checkup.FormID, Date = checkup.DateOfVisit, Administrator = UserORM.Users.Find(checkup.Id).Email });
             }
 
             return surveys;
