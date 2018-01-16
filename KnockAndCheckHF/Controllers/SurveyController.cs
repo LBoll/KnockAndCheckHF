@@ -50,7 +50,7 @@ namespace KnockAndCheckHF.Controllers
 
             DAL.SaveDSSIForm(User.Identity.GetUserId(), PatientID, DateOfVisit, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11);
 
-            return View("../Home/Index");
+            return View("../Survey/WHO5");
         }
 
         [Authorize]
@@ -71,6 +71,28 @@ namespace KnockAndCheckHF.Controllers
             KnockAndCheckDAL DAL = new KnockAndCheckDAL();
 
             DAL.SaveWHO5Form(User.Identity.GetUserId(), PatientID, DateOfVisit, A1, A2, A3, A4, A5);
+
+            return View("../Home/Index");
+        }
+
+        [Authorize]
+        public ActionResult CHECKUP()
+        {
+            KnockAndCheckDAL DAL = new KnockAndCheckDAL();
+
+            ViewBag.Patients = DAL.GetPatientList();
+
+            ViewBag.Form = DAL.GetForm("CHECKUP");
+
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult SaveCHECKUPForm(string PatientID, string DateOfVisit, string A1, string A2, string A3, string A4, string A5)
+        {
+            KnockAndCheckDAL DAL = new KnockAndCheckDAL();
+
+            DAL.SaveCHECKUPForm(User.Identity.GetUserId(), PatientID, DateOfVisit, A1, A2, A3, A4, A5);
 
             return View("../Home/Index");
         }

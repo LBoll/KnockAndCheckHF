@@ -47,5 +47,14 @@ namespace KnockAndCheckHF.Controllers
 
             ORM.SaveChanges();
         }
+
+        public void SaveCHECKUPForm(string Id, string PatientID, string DateOfVisit, string A1, string A2, string A3, string A4, string A5)
+        {
+            string SurveyID = (ORM.Checkups.Count() + 1).ToString();
+
+            ORM.Checkups.Add(new Checkup { Id = Id, PatientID = PatientID, FormID = "CHECKUP", DateOfVisit = DateOfVisit, A1 = A1, A2 = A2, A3 = A3, A4 = A4, A5 = A5, SurveyID = SurveyID });
+
+            ORM.SaveChanges();
+        }
     }
 }
