@@ -43,6 +43,10 @@
                     <br />
                 </div>
             </div>
+            @if (ViewBag.Patient.PrimaryCareGiver == ViewBag.CurrentUser)
+            {
+                <br /><a href="/Survey/CHECKUP?PatientID=@ViewBag.Patient.PatientID" class="btn btn-primary">Weekly Checkup Survey</a><a href="/Survey/DSSI?PatientID=@ViewBag.Patient.PatientID" class="btn btn-primary">DSSI / WHO-5</a><br />
+            }
             @if (ViewBag.Surveys != null)
             {
                 <br /><br /><h3 id="center">Surveys</h3><br /><br />

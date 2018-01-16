@@ -30,6 +30,7 @@ namespace KnockAndCheckHF.Models
         public string A10 { get; set; }
         public string A11 { get; set; }
         public string SurveyID { get; set; }
+        public Nullable<int> TotalScore { get; set; }
     
         public virtual Form Form { get; set; }
         public virtual Patient Patient { get; set; }

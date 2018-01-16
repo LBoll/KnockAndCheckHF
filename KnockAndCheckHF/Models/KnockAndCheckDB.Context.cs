@@ -25,8 +25,8 @@ namespace KnockAndCheckHF.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Checkup> Checkups { get; set; }
         public virtual DbSet<Form> Forms { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
+        public virtual DbSet<Checkup> Checkups { get; set; }
     }
 }
