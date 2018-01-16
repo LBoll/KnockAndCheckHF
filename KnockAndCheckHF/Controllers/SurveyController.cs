@@ -26,7 +26,9 @@ namespace KnockAndCheckHF.Controllers
         {
             KnockAndCheckDAL DAL = new KnockAndCheckDAL();
 
-            DAL.SaveEnrollment(PatientID, FirstName, LastName, DoB, PhoneNumber, StreetAddress, City, State, Zip, PrefferedDay, PrefferedTime, StartDate, StartTime, EmergencyFirstName, EmergencyLastName, EmergencyAddress, EmergencyPhoneNumber, EmergencyCity, EmergencyState, EmergencyZip, EmergencyRelationship);
+            string CareGiver = User.Identity.GetUserName();
+
+            DAL.SaveEnrollment(PatientID, FirstName, LastName, DoB, PhoneNumber, StreetAddress, City, State, Zip, PrefferedDay, PrefferedTime, StartDate, StartTime, EmergencyFirstName, EmergencyLastName, EmergencyAddress, EmergencyPhoneNumber, EmergencyCity, EmergencyState, EmergencyZip, EmergencyRelationship, CareGiver);
 
             return View("../Home/Index");
         }
@@ -36,7 +38,7 @@ namespace KnockAndCheckHF.Controllers
         {
             KnockAndCheckDAL DAL = new KnockAndCheckDAL();
 
-            ViewBag.Patients = DAL.GetPatientList();
+            ViewBag.Patients = DAL.GetPatientList().Where(x => x.PrimaryCareGiver == User.Identity.GetUserName()).Select(x => x.PatientID).ToList();
 
             ViewBag.Form = DAL.GetForm("DSSI");
 
@@ -58,7 +60,7 @@ namespace KnockAndCheckHF.Controllers
         {
             KnockAndCheckDAL DAL = new KnockAndCheckDAL();
 
-            ViewBag.Patients = DAL.GetPatientList();
+            ViewBag.Patients = DAL.GetPatientList().Where(x => x.PrimaryCareGiver == User.Identity.GetUserName()).Select(x => x.PatientID).ToList();
 
             ViewBag.Form = DAL.GetForm("WHO5");
 

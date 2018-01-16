@@ -10,7 +10,7 @@
         <label>Patient ID:</label>
         <select name="PatientID" class="form-control">
             <option value="null" selected></option>
-            @foreach (string id in ViewBag.Patients)
+            @foreach (var id in ViewBag.Patients)
             {
                 <option value="@id">@id</option>
             }

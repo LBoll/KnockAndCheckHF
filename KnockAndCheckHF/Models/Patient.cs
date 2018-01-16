@@ -41,6 +41,8 @@ namespace KnockAndCheckHF.Models
         public string EmergencyState { get; set; }
         public string EmergencyZip { get; set; }
         public string EmergencyRelationship { get; set; }
+        public string EnrollingCareGiver { get; set; }
+        public string PrimaryCareGiver { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Checkup> Checkups { get; set; }

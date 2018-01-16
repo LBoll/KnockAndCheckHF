@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="KnockAndCheckDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="KnockAndCheckDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Checkups">
           <Key>
             <PropertyRef Name="SurveyID" />
@@ -68,6 +68,8 @@
           <Property Name="EmergencyState" Type="nvarchar" MaxLength="50" />
           <Property Name="EmergencyZip" Type="nvarchar" MaxLength="50" />
           <Property Name="EmergencyRelationship" Type="nvarchar" MaxLength="30" />
+          <Property Name="EnrollingCareGiver" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrimaryCareGiver" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Checkups_Forms">
           <End Role="Forms" Type="Self.Forms" Multiplicity="1" />
@@ -106,8 +108,7 @@
             <End Role="Checkups" EntitySet="Checkups" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KnockAndCheckDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -178,6 +179,8 @@
           <Property Name="EmergencyZip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EmergencyRelationship" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Checkups" Relationship="Self.FK_Checkups_Patients" FromRole="Patients" ToRole="Checkups" />
+          <Property Name="EnrollingCareGiver" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryCareGiver" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Checkups_Forms">
           <End Role="Forms" Type="Self.Form" Multiplicity="1" />
@@ -265,6 +268,8 @@
           <EntitySetMapping Name="Patients">
             <EntityTypeMapping TypeName="KnockAndCheckDBModel.Patient">
               <MappingFragment StoreEntitySet="Patients">
+                <ScalarProperty Name="PrimaryCareGiver" ColumnName="PrimaryCareGiver" />
+                <ScalarProperty Name="EnrollingCareGiver" ColumnName="EnrollingCareGiver" />
                 <ScalarProperty Name="PatientID" ColumnName="PatientID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />

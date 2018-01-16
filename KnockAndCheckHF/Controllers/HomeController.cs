@@ -13,16 +13,11 @@ namespace KnockAndCheckHF.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult ListPatients()
         {
-            ViewBag.Message = "Your application description page.";
+            KnockAndCheckDAL DAL = new KnockAndCheckDAL();
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Patients = DAL.GetPatientList();
 
             return View();
         }

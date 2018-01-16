@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "ListPatients";
+}
+<h2>Patients List:</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Patient ID</th>
+        <th>Patient Name</th>
+        <th>Phone Number</th>
+        <th>Primary Care Giver</th>
+        <th>Enrolling Care Giver</th>
+    </tr>
+    @foreach (var Patient in ViewBag.Patients)
+    {
+        <tr>
+            <td>@Patient.PatientID</td>
+            <td>@Patient.FirstName @Patient.LastName</td>
+            <td>@Patient.PhoneNumber</td>
+            <td>@Patient.PrimaryCareGiver</td>
+            <td>@Patient.EnrollingCareGiver</td>
+        </tr>
+    }
+</table>
