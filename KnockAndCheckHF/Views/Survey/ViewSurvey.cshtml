@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "ViewSurvey";
+}
+
+<h2>@ViewBag.Form.FormID</h2>
+<h3>Patient ID: @ViewBag.Checkup.PatientID</h3>
+<h3>Care Giver ID: @ViewBag.UserName</h3>
+
+<h5>@ViewBag.Form.Q1</h5>
+<h5>@ViewBag.Checkup.A1</h5>
+<h5>@ViewBag.Form.Q2</h5>
+<h5>@ViewBag.Checkup.A2</h5>
+<h5>@ViewBag.Form.Q3</h5>
+<h5>@ViewBag.Checkup.A3</h5>
+<h5>@ViewBag.Form.Q4</h5>
+<h5>@ViewBag.Checkup.A4</h5>
+<h5>@ViewBag.Form.Q5</h5>
+<h5>@ViewBag.Checkup.A5</h5>
+@if (ViewBag.Form.FormID == "DSSI")
+{
+    <h5>@ViewBag.Form.Q6</h5>
+    <h5>@ViewBag.Checkup.A6</h5>
+    <h5>@ViewBag.Form.Q7</h5>
+    <h5>@ViewBag.Checkup.A7</h5>
+    <h5>@ViewBag.Form.Q8</h5>
+    <h5>@ViewBag.Checkup.A8</h5>
+    <h5>@ViewBag.Form.Q9</h5>
+    <h5>@ViewBag.Checkup.A9</h5>
+    <h5>@ViewBag.Form.Q10</h5>
+    <h5>@ViewBag.Checkup.A10</h5>
+    <h5>@ViewBag.Form.Q11</h5>
+    <h5>@ViewBag.Checkup.A11</h5>
+}
+
+

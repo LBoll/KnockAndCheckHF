@@ -6,10 +6,22 @@ using System.Web;
 
 namespace KnockAndCheckHF.Controllers
 {
+    public class SurveyInfo
+    {
+        public string FormID { get; set; }
+        public string Date { get; set; }
+        public string Administrator { get; set; }
+    }
+
     public class KnockAndCheckDAL
     {
         KnockAndCheckDBEntities ORM = new KnockAndCheckDBEntities();
         ApplicationDbContext UserORM = new ApplicationDbContext();
+
+        public string GetUserName(string Id)
+        {
+            return UserORM.Users.Find(Id).UserName;
+        }
 
         public List<Patient> GetPatientList()
         {
@@ -19,6 +31,16 @@ namespace KnockAndCheckHF.Controllers
         public Form GetForm(string FormID)
         {
             return ORM.Forms.Find(FormID);
+        }
+
+        public Form GetFormBySurveyID(string SurveyID)
+        {
+            return ORM.Forms.Find(ORM.Checkups.Find(SurveyID).FormID);
+        }
+
+        public Checkup GetCheckup(string CheckupID)
+        {
+            return ORM.Checkups.Find(CheckupID);
         }
 
         public void SaveDSSIForm(string Id, string PatientID, string DateOfVisit, string A1, string A2, string A3, string A4, string A5, string A6, string A7, string A8, string A9, string A10, string A11)
@@ -55,6 +77,20 @@ namespace KnockAndCheckHF.Controllers
             ORM.Checkups.Add(new Checkup { Id = Id, PatientID = PatientID, FormID = "CHECKUP", DateOfVisit = DateOfVisit, A1 = A1, A2 = A2, A3 = A3, A4 = A4, A5 = A5, SurveyID = SurveyID });
 
             ORM.SaveChanges();
+        }
+
+        public List<SurveyInfo> GetSurveysByID(string PatientID)
+        {
+            List<SurveyInfo> surveys = new List<SurveyInfo>();
+
+            List<Checkup> checkups = ORM.Checkups.Where(x => x.PatientID == PatientID).ToList();
+            
+            foreach (Checkup checkup in checkups)
+            {
+                surveys.Add(new SurveyInfo { FormID = checkup.FormID, Date = checkup.DateOfVisit, Administrator = UserORM.Users.Find(checkup.Id).Email });
+            }
+
+            return surveys;
         }
     }
 }

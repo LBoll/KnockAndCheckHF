@@ -98,5 +98,17 @@ namespace KnockAndCheckHF.Controllers
 
             return View("../Home/Index");
         }
+
+        [Authorize]
+        public ActionResult ViewSurvey(string SurveyID)
+        {
+            KnockAndCheckDAL DAL = new KnockAndCheckDAL();
+
+            ViewBag.Form = DAL.GetFormBySurveyID(SurveyID);
+            ViewBag.Checkup = DAL.GetCheckup(SurveyID);
+            ViewBag.UserName = DAL.GetUserName(DAL.GetCheckup(SurveyID).Id);
+
+            return View();
+        }
     }
 }
