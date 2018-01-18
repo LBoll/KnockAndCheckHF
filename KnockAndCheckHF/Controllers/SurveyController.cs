@@ -118,6 +118,15 @@ namespace KnockAndCheckHF.Controllers
             ViewBag.Patient = DAL.SpecificPatient(PatientID);
             ViewBag.Surveys = DAL.GetSurveysByID(PatientID);
 
+            DateTime Date = Convert.ToDateTime(DAL.SpecificPatient(PatientID).DoB);
+
+            DateTime Today = DateTime.Now;
+
+            int Age = Today.Year - Date.Year;
+            if (Date > Today.AddYears(-Age)) Age--;
+
+            ViewBag.Age = Age;
+
             return View("Patient");
         }
     }

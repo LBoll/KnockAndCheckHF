@@ -17,10 +17,11 @@
                                 <div align="center">
                                     <h4 style="color:#00b1b1;">Patient ID: #@ViewBag.Patient.PatientID</h4>
                                     <span><b>Patient Name: </b>@ViewBag.Patient.FirstName @ViewBag.Patient.LastName</span><br />
-                                    <span><b>Date of Birth: </b>@ViewBag.Patient.DoB</span><br />
+                                    <span><b>Date of Birth: </b>@ViewBag.Patient.DoB <b>Age : </b>@ViewBag.Age</span><br />
                                     <span><b>Phone Number: </b>@ViewBag.Patient.PhoneNumber</span><br />
                                     <span><b>Address: </b>@ViewBag.Patient.StreetAddress, @ViewBag.Patient.City, @ViewBag.Patient.State, @ViewBag.Patient.Zip </span><br />
                                     <span><b>Enrolling Care Giver: </b>@ViewBag.Patient.EnrollingCareGiver</span><br />
+                                    <span><b>Enrolled Date: </b>@ViewBag.Patient.StartDate</span><br />
                                     <span><b>Current Care Giver: </b>@ViewBag.Patient.PrimaryCareGiver</span><br />
                                 </div>
                                 <br>
@@ -51,12 +52,12 @@
                     <div class="col-sm-5 col-xs-6 tital ">
                         @survey.Date
                     </div>
-                        <div class="col-sm-7 col-xs-6">
-                            <b>Case Worker: </b>@survey.Administrator<br />
-                            <b>Form Name: </b><a href="/Survey/ViewSurvey?SurveyID=@survey.SurveyID">@survey.FormID</a>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="bot-border"></div>
+                    <div class="col-sm-7 col-xs-6">
+                        <b>Case Worker: </b>@survey.Administrator<br />
+                        <b>Form Name: </b><a href="/Survey/ViewSurvey?SurveyID=@survey.SurveyID">@survey.FormID</a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="bot-border"></div>
                 }
             }
         </div>
