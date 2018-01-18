@@ -34,11 +34,11 @@ namespace KnockAndCheckHF.Controllers
         }
 
         [Authorize]
-        public ActionResult DSSI()
+        public ActionResult DSSI(string PatientID)
         {
             KnockAndCheckDAL DAL = new KnockAndCheckDAL();
 
-            ViewBag.Patients = DAL.GetPatientList().Where(x => x.PrimaryCareGiver == User.Identity.GetUserName()).Select(x => x.PatientID).ToList();
+            ViewBag.PatientID = PatientID;
 
             ViewBag.Form = DAL.GetForm("DSSI");
 
@@ -50,17 +50,19 @@ namespace KnockAndCheckHF.Controllers
         {
             KnockAndCheckDAL DAL = new KnockAndCheckDAL();
 
-            DAL.SaveDSSIForm(User.Identity.GetUserId(), PatientID, DateOfVisit, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11);
+            int TotalScore = int.Parse(A1.Substring(A1.Length - 2, 1)) + int.Parse(A2.Substring(A2.Length - 2, 1)) + int.Parse(A3.Substring(A3.Length - 2, 1)) + int.Parse(A4.Substring(A4.Length - 2, 1)) + int.Parse(A5.Substring(A5.Length - 2, 1)) + int.Parse(A6.Substring(A6.Length - 2, 1)) + int.Parse(A7.Substring(A7.Length - 2, 1)) + int.Parse(A8.Substring(A8.Length - 2, 1)) + int.Parse(A9.Substring(A9.Length - 2, 1)) + int.Parse(A10.Substring(A10.Length - 2, 1)) + int.Parse(A11.Substring(A11.Length - 2, 1));
 
-            return View("../Survey/WHO5");
+            DAL.SaveDSSIForm(User.Identity.GetUserId(), PatientID, DateOfVisit, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, TotalScore);
+
+            return RedirectToAction("WHO5", new { PatientID = PatientID });
         }
 
         [Authorize]
-        public ActionResult WHO5()
+        public ActionResult WHO5(string PatientID)
         {
             KnockAndCheckDAL DAL = new KnockAndCheckDAL();
 
-            ViewBag.Patients = DAL.GetPatientList().Where(x => x.PrimaryCareGiver == User.Identity.GetUserName()).Select(x => x.PatientID).ToList();
+            ViewBag.PatientID = PatientID; 
 
             ViewBag.Form = DAL.GetForm("WHO5");
 
@@ -72,17 +74,19 @@ namespace KnockAndCheckHF.Controllers
         {
             KnockAndCheckDAL DAL = new KnockAndCheckDAL();
 
-            DAL.SaveWHO5Form(User.Identity.GetUserId(), PatientID, DateOfVisit, A1, A2, A3, A4, A5);
+            int TotalScore = int.Parse(A1.Substring(A1.Length - 2, 1)) + int.Parse(A2.Substring(A2.Length - 2, 1)) + int.Parse(A3.Substring(A3.Length - 2, 1)) + int.Parse(A4.Substring(A4.Length - 2, 1)) + int.Parse(A5.Substring(A5.Length - 2, 1));
 
-            return View("../Home/Index");
+            DAL.SaveWHO5Form(User.Identity.GetUserId(), PatientID, DateOfVisit, A1, A2, A3, A4, A5, TotalScore);
+
+            return RedirectToAction("SpecificPatient", new { PatientID = PatientID });
         }
 
         [Authorize]
-        public ActionResult CHECKUP()
+        public ActionResult CHECKUP(string PatientID)
         {
             KnockAndCheckDAL DAL = new KnockAndCheckDAL();
 
-            ViewBag.Patients = DAL.GetPatientList();
+            ViewBag.PatientID = PatientID;
 
             ViewBag.Form = DAL.GetForm("CHECKUP");
 
@@ -96,7 +100,7 @@ namespace KnockAndCheckHF.Controllers
 
             DAL.SaveCHECKUPForm(User.Identity.GetUserId(), PatientID, DateOfVisit, A1, A2, A3, A4, A5);
 
-            return View("../Home/Index");
+            return RedirectToAction("SpecificPatient", new { PatientID = PatientID });
         }
 
         [Authorize]
@@ -104,6 +108,7 @@ namespace KnockAndCheckHF.Controllers
         {
             KnockAndCheckDAL DAL = new KnockAndCheckDAL();
 
+            ViewBag.Patient = DAL.SpecificPatient(DAL.GetCheckup(SurveyID).PatientID);
             ViewBag.Form = DAL.GetFormBySurveyID(SurveyID);
             ViewBag.Checkup = DAL.GetCheckup(SurveyID);
             ViewBag.UserName = DAL.GetUserName(DAL.GetCheckup(SurveyID).Id);
@@ -115,6 +120,7 @@ namespace KnockAndCheckHF.Controllers
         {
             KnockAndCheckDAL DAL = new KnockAndCheckDAL();
 
+            ViewBag.CurrentUser = User.Identity.GetUserName();
             ViewBag.Patient = DAL.SpecificPatient(PatientID);
             ViewBag.Surveys = DAL.GetSurveysByID(PatientID);
 

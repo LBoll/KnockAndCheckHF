@@ -25,6 +25,7 @@
           <Property Name="A10" Type="nvarchar" MaxLength="256" />
           <Property Name="A11" Type="nvarchar" MaxLength="256" />
           <Property Name="SurveyID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TotalScore" Type="int" />
         </EntityType>
         <EntityType Name="Forms">
           <Key>
@@ -112,29 +113,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KnockAndCheckDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Checkup">
-          <Key>
-            <PropertyRef Name="SurveyID" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PatientID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FormID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DateOfVisit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="A1" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="A2" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="A3" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="A4" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="A5" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="A6" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="A7" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="A8" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="A9" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="A10" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="A11" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="SurveyID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Form" Relationship="Self.FK_Checkups_Forms" FromRole="Checkups" ToRole="Forms" />
-          <NavigationProperty Name="Patient" Relationship="Self.FK_Checkups_Patients" FromRole="Checkups" ToRole="Patients" />
-        </EntityType>
         <EntityType Name="Form">
           <Key>
             <PropertyRef Name="FormID" />
@@ -151,7 +129,7 @@
           <Property Name="Q9" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Q10" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Q11" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Checkups" Relationship="Self.FK_Checkups_Forms" FromRole="Forms" ToRole="Checkups" />
+          <NavigationProperty Name="Checkups" Relationship="KnockAndCheckDBModel.FK_Checkups_Forms" FromRole="Form" ToRole="Checkup" />
         </EntityType>
         <EntityType Name="Patient">
           <Key>
@@ -178,75 +156,77 @@
           <Property Name="EmergencyState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EmergencyZip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EmergencyRelationship" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Checkups" Relationship="Self.FK_Checkups_Patients" FromRole="Patients" ToRole="Checkups" />
           <Property Name="EnrollingCareGiver" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PrimaryCareGiver" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Checkups" Relationship="KnockAndCheckDBModel.FK_Checkups_Patients" FromRole="Patient" ToRole="Checkup" />
+        </EntityType>
+        <EntityContainer Name="KnockAndCheckDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Forms" EntityType="Self.Form" />
+          <EntitySet Name="Patients" EntityType="Self.Patient" />
+          <EntitySet Name="Checkups" EntityType="KnockAndCheckDBModel.Checkup" />
+          <AssociationSet Name="FK_Checkups_Forms" Association="KnockAndCheckDBModel.FK_Checkups_Forms">
+            <End Role="Form" EntitySet="Forms" />
+            <End Role="Checkup" EntitySet="Checkups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checkups_Patients" Association="KnockAndCheckDBModel.FK_Checkups_Patients">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Checkup" EntitySet="Checkups" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Checkup">
+          <Key>
+            <PropertyRef Name="SurveyID" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PatientID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FormID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfVisit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="A1" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="A2" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="A3" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="A4" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="A5" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="A6" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="A7" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="A8" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="A9" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="A10" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="A11" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="SurveyID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TotalScore" Type="Int32" />
+          <NavigationProperty Name="Form" Relationship="KnockAndCheckDBModel.FK_Checkups_Forms" FromRole="Checkup" ToRole="Form" />
+          <NavigationProperty Name="Patient" Relationship="KnockAndCheckDBModel.FK_Checkups_Patients" FromRole="Checkup" ToRole="Patient" />
         </EntityType>
         <Association Name="FK_Checkups_Forms">
-          <End Role="Forms" Type="Self.Form" Multiplicity="1" />
-          <End Role="Checkups" Type="Self.Checkup" Multiplicity="*" />
+          <End Type="KnockAndCheckDBModel.Form" Role="Form" Multiplicity="1" />
+          <End Type="KnockAndCheckDBModel.Checkup" Role="Checkup" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Forms">
+            <Principal Role="Form">
               <PropertyRef Name="FormID" />
             </Principal>
-            <Dependent Role="Checkups">
+            <Dependent Role="Checkup">
               <PropertyRef Name="FormID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Checkups_Patients">
-          <End Role="Patients" Type="Self.Patient" Multiplicity="1" />
-          <End Role="Checkups" Type="Self.Checkup" Multiplicity="*" />
+          <End Type="KnockAndCheckDBModel.Patient" Role="Patient" Multiplicity="1" />
+          <End Type="KnockAndCheckDBModel.Checkup" Role="Checkup" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Patients">
+            <Principal Role="Patient">
               <PropertyRef Name="PatientID" />
             </Principal>
-            <Dependent Role="Checkups">
+            <Dependent Role="Checkup">
               <PropertyRef Name="PatientID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="KnockAndCheckDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Checkups" EntityType="Self.Checkup" />
-          <EntitySet Name="Forms" EntityType="Self.Form" />
-          <EntitySet Name="Patients" EntityType="Self.Patient" />
-          <AssociationSet Name="FK_Checkups_Forms" Association="Self.FK_Checkups_Forms">
-            <End Role="Forms" EntitySet="Forms" />
-            <End Role="Checkups" EntitySet="Checkups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Checkups_Patients" Association="Self.FK_Checkups_Patients">
-            <End Role="Patients" EntitySet="Patients" />
-            <End Role="Checkups" EntitySet="Checkups" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="KnockAndCheckDBModelStoreContainer" CdmEntityContainer="KnockAndCheckDBEntities">
-          <EntitySetMapping Name="Checkups">
-            <EntityTypeMapping TypeName="KnockAndCheckDBModel.Checkup">
-              <MappingFragment StoreEntitySet="Checkups">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-                <ScalarProperty Name="FormID" ColumnName="FormID" />
-                <ScalarProperty Name="DateOfVisit" ColumnName="DateOfVisit" />
-                <ScalarProperty Name="A1" ColumnName="A1" />
-                <ScalarProperty Name="A2" ColumnName="A2" />
-                <ScalarProperty Name="A3" ColumnName="A3" />
-                <ScalarProperty Name="A4" ColumnName="A4" />
-                <ScalarProperty Name="A5" ColumnName="A5" />
-                <ScalarProperty Name="A6" ColumnName="A6" />
-                <ScalarProperty Name="A7" ColumnName="A7" />
-                <ScalarProperty Name="A8" ColumnName="A8" />
-                <ScalarProperty Name="A9" ColumnName="A9" />
-                <ScalarProperty Name="A10" ColumnName="A10" />
-                <ScalarProperty Name="A11" ColumnName="A11" />
-                <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Forms">
             <EntityTypeMapping TypeName="KnockAndCheckDBModel.Form">
               <MappingFragment StoreEntitySet="Forms">
@@ -291,6 +271,29 @@
                 <ScalarProperty Name="EmergencyState" ColumnName="EmergencyState" />
                 <ScalarProperty Name="EmergencyZip" ColumnName="EmergencyZip" />
                 <ScalarProperty Name="EmergencyRelationship" ColumnName="EmergencyRelationship" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Checkups">
+            <EntityTypeMapping TypeName="KnockAndCheckDBModel.Checkup">
+              <MappingFragment StoreEntitySet="Checkups">
+                <ScalarProperty Name="TotalScore" ColumnName="TotalScore" />
+                <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+                <ScalarProperty Name="A11" ColumnName="A11" />
+                <ScalarProperty Name="A10" ColumnName="A10" />
+                <ScalarProperty Name="A9" ColumnName="A9" />
+                <ScalarProperty Name="A8" ColumnName="A8" />
+                <ScalarProperty Name="A7" ColumnName="A7" />
+                <ScalarProperty Name="A6" ColumnName="A6" />
+                <ScalarProperty Name="A5" ColumnName="A5" />
+                <ScalarProperty Name="A4" ColumnName="A4" />
+                <ScalarProperty Name="A3" ColumnName="A3" />
+                <ScalarProperty Name="A2" ColumnName="A2" />
+                <ScalarProperty Name="A1" ColumnName="A1" />
+                <ScalarProperty Name="DateOfVisit" ColumnName="DateOfVisit" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
