@@ -4,13 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="19d6cf8f18de4fc28f27db37533467f9" Name="Diagram1" ZoomLevel="94">
-        <EntityTypeShape EntityType="KnockAndCheckDBModel.Form" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="KnockAndCheckDBModel.Patient" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="KnockAndCheckDBModel.Checkup" Width="1.5" PointX="3" PointY="5.875" />
-        <AssociationConnector Association="KnockAndCheckDBModel.FK_Checkups_Forms" />
-        <AssociationConnector Association="KnockAndCheckDBModel.FK_Checkups_Patients" />
-        </Diagram>
+      <Diagram DiagramId="c27f536ffca843109d7aa4662211e82c" Name="Diagram1">
+        <EntityTypeShape EntityType="KnockAndCheckDBModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="KnockAndCheckDBModel.AspNetRole" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KnockAndCheckDBModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KnockAndCheckDBModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KnockAndCheckDBModel.AspNetUser" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KnockAndCheckDBModel.Checkup" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KnockAndCheckDBModel.Form" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KnockAndCheckDBModel.Patient" Width="1.5" PointX="6" PointY="11" IsExpanded="true" />
+        <AssociationConnector Association="KnockAndCheckDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="KnockAndCheckDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="KnockAndCheckDBModel.FK_Checkups_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="KnockAndCheckDBModel.FK_Checkups_Forms" ManuallyRouted="false" />
+        <AssociationConnector Association="KnockAndCheckDBModel.FK_Checkups_Patients" ManuallyRouted="false" />
+        <AssociationConnector Association="KnockAndCheckDBModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

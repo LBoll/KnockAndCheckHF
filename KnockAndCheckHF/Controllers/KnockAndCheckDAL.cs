@@ -16,7 +16,7 @@ namespace KnockAndCheckHF.Controllers
 
     public class KnockAndCheckDAL
     {
-        KnockAndCheckDBEntities ORM = new KnockAndCheckDBEntities();
+        KnockAndCheckDBEntities2 ORM = new KnockAndCheckDBEntities2();
         ApplicationDbContext UserORM = new ApplicationDbContext();
 
         public string GetUserName(string Id)

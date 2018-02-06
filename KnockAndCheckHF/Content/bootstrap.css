@@ -2093,7 +2093,9 @@ fieldset[disabled] .btn-default.active {
   color: #ffffff;
   background-color: #428bca;
   border-color: #357ebd;
-}
+  justify-content: space-between;
+  display: inline;
+  margin-left: 150px;
 
 .btn-primary:hover,
 .btn-primary:focus,
@@ -5738,7 +5740,7 @@ body.modal-open,
   margin-left: 0;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 400px) {
   .modal-dialog {
     right: auto;
     left: 50%;
@@ -6183,7 +6185,7 @@ body.modal-open,
   text-shadow: none;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 400px) {
   .carousel-control .icon-prev,
   .carousel-control .icon-next {
     width: 30px;
@@ -6285,7 +6287,7 @@ td.visible-xs {
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 400px) and (max-width: 991px) {
   .visible-xs.visible-sm {
     display: block !important;
   }
@@ -6350,7 +6352,7 @@ td.visible-sm {
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 400px) and (max-width: 991px) {
   .visible-sm {
     display: block !important;
   }
@@ -6415,7 +6417,7 @@ td.visible-md {
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 400px) and (max-width: 991px) {
   .visible-md.visible-sm {
     display: block !important;
   }
@@ -6480,7 +6482,7 @@ td.visible-lg {
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 400px) and (max-width: 991px) {
   .visible-lg.visible-sm {
     display: block !important;
   }
@@ -6545,7 +6547,7 @@ td.hidden-xs {
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 400px) and (max-width: 991px) {
   .hidden-xs.hidden-sm {
     display: none !important;
   }
@@ -6610,7 +6612,7 @@ td.hidden-sm {
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 400px) and (max-width: 991px) {
   .hidden-sm {
     display: none !important;
   }
@@ -6675,7 +6677,7 @@ td.hidden-md {
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 400px) and (max-width: 991px) {
   .hidden-md.hidden-sm {
     display: none !important;
   }
@@ -6740,7 +6742,7 @@ td.hidden-lg {
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 400px) and (max-width: 991px) {
   .hidden-lg.hidden-sm {
     display: none !important;
   }

@@ -205,7 +205,22 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>KnockAndCheckDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>KnockAndCheckDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>KnockAndCheckDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>KnockAndCheckDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Checkup.cs">
+      <DependentUpon>KnockAndCheckDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>KnockAndCheckDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Form.cs">

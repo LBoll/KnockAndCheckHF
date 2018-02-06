@@ -13,10 +13,10 @@ namespace KnockAndCheckHF.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class KnockAndCheckDBEntities : DbContext
+    public partial class KnockAndCheckDBEntities2 : DbContext
     {
-        public KnockAndCheckDBEntities()
-            : base("name=KnockAndCheckDBEntities")
+        public KnockAndCheckDBEntities2()
+            : base("name=KnockAndCheckDBEntities2")
         {
         }
     
@@ -25,8 +25,13 @@ namespace KnockAndCheckHF.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Checkup> Checkups { get; set; }
         public virtual DbSet<Form> Forms { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
-        public virtual DbSet<Checkup> Checkups { get; set; }
     }
 }
